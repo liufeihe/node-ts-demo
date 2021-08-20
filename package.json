@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/liufeihe/node-ts-demo#readme",
   "dependencies": {
+    "loadsh": "0.0.4",
     "mathjs": "^9.4.4"
   }
 }
