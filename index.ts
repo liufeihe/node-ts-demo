@@ -1,4 +1,4 @@
-import { methodDecorator, classDecorator } from  './src/util/decorator';
+import { methodDecorator, classDecorator } from  './src/es/decorator';
 
 @classDecorator
 class App {
