@@ -4,18 +4,22 @@ function doParse(expression: string) {
   const node = parse(expression);
   const facts = {volume:100, volume5:20, userTag:1};
   console.log(expression, node);
-  checkNode(node, facts);
+  checkNode(node, facts, 0);
 }
 
-function checkNode(node: math.MathNode, facts: any) {
+function checkNode(node: math.MathNode, facts: any, dep: number) {
   if (!['and', 'or', '==', '!=', '>', '>=', '<', '<=', '+', '-', '*', '/'].includes(node.op)) {
     console.log('op is invalid', node.op);
     return;
   }
   if (['and', 'or'].includes(node.op)) {
+    if (dep >= 3) {
+      console.log('dep is more than 3', dep);
+    return;
+    }
     // 检查args
     node.args.forEach(node => {
-      checkNode(node, facts);
+      checkNode(node, facts, dep+1);
     })
   } else {
     const value = node.evaluate(facts);
@@ -60,7 +64,7 @@ function doEvaluate() {
 
 function main() {
   doEvaluate();
-  doParse('volume+2 & volume5*3>userTag+5 or userTag<=10');
+  doParse('volume>2 and volume5*3>userTag+5 or userTag<=10 or userTag<=10  or userTag<=10');
 }
 
 main()
