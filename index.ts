@@ -22,6 +22,8 @@ function main() {
   const app = new App()
   app.run();
   // app.hello('world.')
+
+	console.log('and and'.replace(new RegExp('and', 'g'), '1'));
 }
 
 main()
