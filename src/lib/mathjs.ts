@@ -57,6 +57,26 @@ function printArgs(node) {
   }
 }
 
+function validCustomExpressionWithEval(
+  expression: string,
+  varList: Array<string>
+) {
+  let exp2: string;
+  try {
+    // 简化后执行下表达式
+    exp2 = expression.replace(new RegExp(' and ', 'g'), ' && ');
+    exp2 = exp2.replace(new RegExp(' or ', 'g'), ' || ');
+    varList.sort((a,b) => b.length-a.length);
+    varList.forEach(item => {
+      exp2 = exp2.replace(new RegExp(item, 'g'), '1');
+    });
+    console.log(exp2);
+    eval(exp2);
+  } catch (error) {
+    console.log(error, exp2);
+  }
+}
+
 // function doEvaluate() {
 //   try {
 //     // const exps = ['a==1e2', 'b>1e1','a>b']
@@ -95,8 +115,9 @@ function main() {
     // doEvaluate();
     // doParse('volume>2 and volume5*3>userTag+5 or userTag<=10 or userTag<=10  or userTag<=10');
     // doParse('volume5>+5 and mobile<5 or userTag>5');
-    doParse('(volume > 10) and (volume>5)');
+    // doParse('(volume > 10) and (volume>5)');
     doParse('userAddressBaseScore<5');
+    validCustomExpressionWithEval('userAddressBaseScore<5 and userAddressBaseScoreAndCnt > 10', ['userAddressBaseScore', 'userAddressBaseScoreAndCnt']);
     // doParse('volume*+-+ volume5>5 and mobile<5');
     // doParse('(volume + volume5)>5 and mobile<5');
   } catch (error) {
