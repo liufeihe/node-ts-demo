@@ -19,11 +19,12 @@ export class ByxAuth {
     return new Date().getTime().toString();
   }
 
-  getToken() {
+  // 获取x-access-token
+  getXAccessToken() {
     let timestamp = this.getTime();
     let nonce = this.getNonce();
     let sign = this.getSign(timestamp, nonce);
-    let token = this.getXAccessToken(timestamp, nonce, sign);
+    let token = this.getToken(timestamp, nonce, sign);
     console.log({timestamp, nonce, sign, token});
     return token;
   }
@@ -36,8 +37,7 @@ export class ByxAuth {
     return str.split(this.splitSign);
   }
 
-  // 获取x-access-token
-  getXAccessToken(timestamp: string, nonce: string, sign: string): string {
+  getToken(timestamp: string, nonce: string, sign: string): string {
     const str: string = this.appId + this.splitSign + timestamp + this.splitSign + nonce + this.splitSign + this.version + this.splitSign + sign;
     const words = CryptoJS.enc.Utf8.parse(str);
     const base64 = CryptoJS.enc.Base64.stringify(words);
@@ -85,16 +85,16 @@ export class ByxAuth {
   }
 }
 
-export const config = {
+export const ByxConfig = {
   appid: '10004',
   appsecret: 'riUK!f-N@9nL',
   usersecret: 'fn93FjaPG*ZB'
 }
 
-function main() {
-  let auth = new ByxAuth(config.appid, config.appsecret, config.usersecret);
-  let token = auth.getToken();
-  auth.getParamsFromToken(token);
-}
+// function main() {
+//   let auth = new ByxAuth(ByxConfig.appid, ByxConfig.appsecret, ByxConfig.usersecret);
+//   let token = auth.getXAccessToken();
+//   auth.getParamsFromToken(token);
+// }
 
-main();
+// main();
