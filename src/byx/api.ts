@@ -1,7 +1,7 @@
 import { httpGet, httpPost } from "../lib/http";
 import { transferDatakeyToUnderLine } from "../util/common";
 import { ByxAuth, ByxConfig } from "./auth";
-import { IJobCreate } from "./interface";
+import { IJobCreate, IJobDelete, IJobUpdate } from "./interface";
 
 export class ByxApi {
   private baseUrl:string;
@@ -29,7 +29,7 @@ export class ByxApi {
     console.log(res);
   }
 
-  async updateJob(data) {
+  async updateJob(data: IJobUpdate) {
     const url = `${this.baseUrl}/api/schedule/job/update`
     const res = await httpPost(url, transferDatakeyToUnderLine(data), {
       'X-Access-Token': this.byxAuth.getXAccessToken(),
@@ -37,7 +37,7 @@ export class ByxApi {
     console.log(res);
   }
 
-  async deleteJob(data) {
+  async deleteJob(data: IJobDelete) {
     const url = `${this.baseUrl}/api/schedule/job/delete`
     const res = await httpPost(url, transferDatakeyToUnderLine(data), {
       'X-Access-Token': this.byxAuth.getXAccessToken(),
@@ -45,13 +45,3 @@ export class ByxApi {
     console.log(res);
   }
 }
-
-async function main() {
-  try {
-    const api = new ByxApi();
-    await api.getJobList();
-  } catch (error) {
-    console.log(error);
-  }
-}
-main();
