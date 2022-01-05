@@ -88,7 +88,7 @@ export class ByxAuth {
 export const ByxConfig = {
   appid: '10004',
   appsecret: 'riUK!f-N@9nL',
-  usersecret: 'fn93FjaPG*ZB'
+  usersecret: 'fn93FjaPG*ZB' // 每个用户用自己的
 }
 
 // function main() {
