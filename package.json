@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/liufeihe/node-ts-demo#readme",
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "loadsh": "0.0.4",
     "mathjs": "^9.4.4",
+    "md5": "^2.3.0",
     "moment": "^2.29.1",
     "reflect-metadata": "^0.1.13"
   }
