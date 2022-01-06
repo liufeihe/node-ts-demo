@@ -6,11 +6,6 @@ class RuleNode {
   constructor(expression: string) {
     this.expression = expression;
   }
-
-  parseCalcNodeTree(expression: string) {
-    if (exp) {}
-
-  }
   
 }
 
