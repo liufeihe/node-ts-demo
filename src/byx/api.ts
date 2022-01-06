@@ -1,15 +1,16 @@
 import { httpGet, httpPost } from "../lib/http";
-import { transferDatakeyToUnderLine } from "../util/common";
+import { transferDatakeyToUnderLine } from "./utils";
 import { ByxAuth, ByxConfig } from "./auth";
 import { IJobCreate, IJobDelete, IJobUpdate } from "./interface";
 
 export class ByxApi {
   private baseUrl:string;
   private byxAuth: ByxAuth;
-  constructor() {
-    this.baseUrl = 'https://test-byx.go.akamai-access.com/byx-interface';
+  constructor(baseUrl: string) {
+    // this.baseUrl = 'https://test-byx.go.akamai-access.com/byx-interface';
     // this.baseUrl = 'http://byx-api.test.niubit.io/byx-interface';
-    // this.baseUrl = 'http://byx-api.test.cht.ww5sawfyut0k.bitsvc.io/byx-interface';
+    // this.baseUrl = 'http://byx-api.test.cht.ww5sawfyut0k.bitsvc.io/byx-interface'
+    this.baseUrl = baseUrl;
     this.byxAuth = new ByxAuth(ByxConfig.appid, ByxConfig.appsecret, ByxConfig.usersecret);
   }
 

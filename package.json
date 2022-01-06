@@ -20,6 +20,7 @@
   "homepage": "https://github.com/liufeihe/node-ts-demo#readme",
   "dependencies": {
     "@types/lodash": "^4.14.178",
+    "@types/node": "^17.0.8",
     "axios": "^0.24.0",
     "crypto-js": "^4.1.1",
     "loadsh": "0.0.4",
