@@ -1,7 +1,7 @@
 import { isObject } from "lodash";
 import path = require('path');
 
-function getFile(file) {
+function getFile(file: string) {
   return path.join(__dirname, file);
 }
 
